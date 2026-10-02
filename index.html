@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MPI Akidah Akhlak MTs - Adab Terhadap Orang Tua | Kanwil Kemenag Gorontalo</title>
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -30,7 +31,7 @@
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap');
         
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -38,12 +39,15 @@
             color: #F8FAFC;
         }
 
+        .font-arabic {
+            font-family: 'Amiri', serif;
+        }
+
         .bg-pattern {
             background-color: #0A1128;
             background-image: radial-gradient(#EAB308 0.75px, transparent 0.75px), radial-gradient(#EAB308 0.75px, #0A1128 0.75px);
             background-size: 30px 30px;
             background-position: 0 0, 15px 15px;
-            background-opacity: 0.05;
         }
 
         .card-navy {
@@ -53,11 +57,11 @@
         }
 
         .glow-gold {
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.25);
         }
 
         .glow-gold-hover:hover {
-            box-shadow: 0 0 20px rgba(234, 179, 8, 0.5);
+            box-shadow: 0 0 25px rgba(234, 179, 8, 0.45);
         }
 
         /* Custom Scrollbar */
@@ -72,8 +76,14 @@
             border-radius: 4px;
         }
 
-        /* Interactive Transitions */
+        /* Dynamic Nav Tabs */
         .tab-btn.active {
+            background-color: #EAB308;
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .subtab-btn.active {
             background-color: #EAB308;
             color: #0F172A;
             font-weight: 700;
@@ -98,7 +108,7 @@
         .running-text-content {
             display: inline-block;
             padding-left: 100%;
-            animation: runningTextAnim 18s linear infinite;
+            animation: runningTextAnim 22s linear infinite;
         }
 
         .running-text-container:hover .running-text-content {
@@ -109,57 +119,139 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
         }
+
+        /* Cover Modal Fade Effect */
+        #cover-screen {
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        #cover-screen.hidden-cover {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-pattern flex flex-col justify-between text-slate-100">
+<body class="min-h-screen bg-pattern flex flex-col justify-between text-slate-100 relative">
+
+    <!-- OVERLAY COVER SCREEN (HALAMAN PEMBUKA INTERAKTIF) -->
+    <div id="cover-screen" class="fixed inset-0 z-[100] bg-navy-deep bg-pattern flex items-center justify-center p-4">
+        <div class="max-w-3xl w-full card-navy p-6 md:p-10 rounded-3xl border-2 border-gold-500 glow-gold text-center space-y-6 relative overflow-hidden shadow-2xl">
+            <!-- Decorative Accent -->
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl"></div>
+
+            <!-- Header Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-500/40 text-gold-400 text-xs font-semibold tracking-wider uppercase">
+                <span>🏛️</span> Kantor Wilayah Kementerian Agama Provinsi Gorontalo
+            </div>
+
+            <!-- Title & Subtitle -->
+            <div class="space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-300">MEDIA PEMBELAJARAN INTERAKTIF (MPI) AKIDAH AKHLAK</span>
+                <h1 class="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight">
+                    ADAB TERHADAP <span class="text-gold-400">ORANG TUA</span>
+                </h1>
+                <p class="text-gold-500/90 font-serif text-lg md:text-xl italic">
+                    "Birrul Walidain : Kunci Ridho Allah SWT"
+                </p>
+                <p class="text-xs md:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+                    Modul Interaktif Kelas VII MTs / Fase D • Berbasis Kearifan Lokal Gorontalo <em>(Huyula & Adat Bersendi Syarak)</em>
+                </p>
+            </div>
+
+            <!-- Visual Icon Showcase -->
+            <div class="py-4 flex justify-center items-center gap-6 text-4xl">
+                <div class="p-3 bg-navy-800/80 rounded-2xl border border-gold-500/30 shadow-inner">📖</div>
+                <div class="p-4 bg-gold-500 text-navy-900 rounded-2xl shadow-lg font-black text-2xl border-2 border-white transform hover:scale-105 transition-transform">🤲</div>
+                <div class="p-3 bg-navy-800/80 rounded-2xl border border-gold-500/30 shadow-inner">🎮</div>
+            </div>
+
+            <!-- Metadata Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-left text-xs bg-navy-900/80 p-4 rounded-xl border border-slate-700">
+                <div>
+                    <span class="text-slate-400 block">Jenjang / Kelas:</span>
+                    <strong class="text-gold-400">MTs / Kelas VII (Fase D)</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">Mata Pelajaran:</span>
+                    <strong class="text-slate-200">Akidah Akhlak</strong>
+                </div>
+                <div class="col-span-2 md:col-span-1">
+                    <span class="text-slate-400 block">Satuan Pendidikan:</span>
+                    <strong class="text-slate-200">MTs Negeri 3 Kab. Gorontalo</strong>
+                </div>
+            </div>
+
+            <!-- CTA Actions -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="startMPI()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-900 font-extrabold text-base rounded-2xl shadow-xl hover:shadow-gold-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                    <span>🚀 MULAI PEMBELAJARAN</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </button>
+                <button onclick="toggleAudio()" id="bgm-toggle-btn" class="px-5 py-4 bg-navy-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-2xl border border-slate-600 transition-all flex items-center gap-2">
+                    <span id="audio-icon">🔊</span> <span id="audio-text">Audio Backsound: ON</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- RUNNING TEXT BANNER AT TOP -->
     <div class="running-text-container">
         <div class="running-text-content">
-            ✨ Selamat datang di MTs Negeri 3 Kab. Gorontalo ✨
+            ✨ Selamat Datang di Media Pembelajaran Interaktif Akidah Akhlak MTs • Kanwil Kemenag Gorontalo • Mari Wujudkan Generasi Berakhlak Mulia & Taat Kepada Orang Tua ✨
         </div>
     </div>
 
     <!-- HEADER & NAVBAR -->
     <header class="bg-navy-deep border-b border-gold-500/30 sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-3">
                 
                 <!-- Logo & Institutional Branding -->
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-black text-xl shadow-md border-2 border-white">
-                        <svg class="w-7 h-7 text-navy-900" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.53 20.18 9 12 13.47 3.82 9zM6 14.85V17c0 2.21 2.69 4 6 4s6-1.79 6-4v-2.15l-6 3.27-6-3.27z"/>
-                        </svg>
+                <div class="flex items-center gap-3 w-full lg:w-auto justify-between lg:justify-start">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-black text-xl shadow-md border-2 border-white">
+                            <svg class="w-6 h-6 text-navy-900" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.53 20.18 9 12 13.47 3.82 9zM6 14.85V17c0 2.21 2.69 4 6 4s6-1.79 6-4v-2.15l-6 3.27-6-3.27z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-base md:text-lg font-bold text-gold-400 tracking-wide uppercase leading-tight">
+                                MPI Akidah Akhlak MTs
+                            </h1>
+                            <p class="text-[11px] text-slate-300">
+                                Kanwil Kemenag Prov. Gorontalo • Kelas VII / Fase D
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="text-lg md:text-xl font-bold text-gold-400 tracking-wide uppercase">
-                            MPI Akidah Akhlak MTs
-                        </h1>
-                        <p class="text-xs text-slate-300">
-                            Kanwil Kementerian Agama Provinsi Gorontalo • Kelas VII / Fase D
-                        </p>
-                    </div>
+                    
+                    <button onclick="showCover()" class="text-xs bg-navy-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-gold-500/30 text-gold-400 flex items-center gap-1 lg:hidden">
+                        🏠 Cover
+                    </button>
                 </div>
 
                 <!-- Navigation Tabs -->
-                <nav class="flex flex-wrap justify-center gap-1 bg-navy-800 p-1.5 rounded-xl border border-slate-700 w-full md:w-auto">
-                    <button onclick="switchTab('beranda')" id="tab-beranda" class="tab-btn active px-4 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
+                <nav class="flex flex-wrap justify-center gap-1 bg-navy-800 p-1.5 rounded-xl border border-slate-700 w-full lg:w-auto">
+                    <button onclick="switchTab('beranda')" id="tab-beranda" class="tab-btn active px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
                         🏠 Beranda
                     </button>
-                    <button onclick="switchTab('materi')" id="tab-materi" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
+                    <button onclick="switchTab('materi')" id="tab-materi" class="tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
                         📖 Modul Materi
                     </button>
-                    <button onclick="switchTab('simulasi')" id="tab-simulasi" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
+                    <button onclick="switchTab('simulasi')" id="tab-simulasi" class="tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
                         🎮 Laboratorium Adab
                     </button>
-                    <button onclick="switchTab('kuis')" id="tab-kuis" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
+                    <button onclick="switchTab('kuis')" id="tab-kuis" class="tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
                         📝 Kuis Formatif
                     </button>
-                    <button onclick="switchTab('pengembang')" id="tab-pengembang" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
+                    <button onclick="switchTab('pengembang')" id="tab-pengembang" class="tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all duration-200">
                         👤 Profil Pengembang
                     </button>
                 </nav>
+
+                <button onclick="showCover()" class="hidden lg:flex text-xs bg-navy-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-gold-500/30 text-gold-400 items-center gap-1 transition-all">
+                    🏠 Cover Utama
+                </button>
 
             </div>
         </div>
@@ -186,10 +278,10 @@
                         Selamat datang di Media Pembelajaran Interaktif Akidah Akhlak. Modul ini dirancang khusus untuk peserta didik MTs di Provinsi Gorontalo agar mampu memahami, meresapi, dan mempraktikkan adab menghormati orang tua baik di lingkungan keluarga, pesisir, maupun pertanian.
                     </p>
                     <div class="pt-2 flex flex-wrap gap-3">
-                        <button onclick="switchTab('materi')" class="px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <button onclick="switchTab('materi')" class="px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold text-sm rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
                             Mulai Eksplorasi Materi →
                         </button>
-                        <button onclick="switchTab('simulasi')" class="px-6 py-3 bg-navy-800 hover:bg-slate-700 text-white font-semibold rounded-xl border border-gold-500/30 transition-all">
+                        <button onclick="switchTab('simulasi')" class="px-6 py-3 bg-navy-800 hover:bg-slate-700 text-white font-semibold text-sm rounded-xl border border-gold-500/30 transition-all">
                             Coba Simulator Adab 🎮
                         </button>
                     </div>
@@ -212,12 +304,12 @@
                 <div class="card-navy p-5 rounded-xl border-l-4 border-l-gold-500">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="text-2xl">📌</span>
-                        <h3 class="font-bold text-gold-400 text-base">Tujuan Pembelajaran</h3>
+                        <h3 class="font-bold text-gold-400 text-base">Tujuan Pembelajaran (TP)</h3>
                     </div>
                     <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
                         <li>Menjelaskan dalil naqli kewajiban berbakti kepada orang tua.</li>
                         <li>Menganalisis bentuk-bentuk adab mulia saat orang tua masih hidup/wafat.</li>
-                        <li>Menunjukkan perilaku menghormati orang tua dalam kearifan lokal Gorontalo (*Huyula*).</li>
+                        <li>Menunjukkan perilaku menghormati orang tua dalam kearifan lokal Gorontalo (<em>Huyula</em>).</li>
                     </ul>
                 </div>
 
@@ -227,7 +319,7 @@
                         <h3 class="font-bold text-gold-400 text-base">Petunjuk Akses Media</h3>
                     </div>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        Media ini bersifat 100% mandiri (Offline). Kamu dapat mempelajari materi modular, berlatih pengambilan keputusan di Laboratorium Adab, dan menguji pemahaman lewat Kuis Formatif.
+                        Media ini dapat diakses secara mandiri. Kamu dapat mempelajari materi modular, berlatih pengambilan keputusan di Laboratorium Adab, dan menguji pemahaman lewat Kuis Formatif.
                     </p>
                 </div>
 
@@ -249,17 +341,17 @@
 
             <!-- Material Sub-Tabs Nav -->
             <div class="flex border-b border-slate-700 space-x-2 overflow-x-auto pb-1">
-                <button onclick="switchSubMateri('dalil')" id="subtab-dalil" class="px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-gold-500 text-navy-900">
+                <button onclick="switchSubMateri('dalil')" id="subtab-dalil" class="subtab-btn active px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-gold-500 text-navy-900 whitespace-nowrap">
                     1. Landasan Dalil Naqli
                 </button>
-                <button onclick="switchSubMateri('bentuk')" id="subtab-bentuk" class="px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-navy-800 text-slate-300 hover:text-white">
+                <button onclick="switchSubMateri('bentuk')" id="subtab-bentuk" class="subtab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-navy-800 text-slate-300 hover:text-white whitespace-nowrap">
                     2. Bentuk Adab Praktis
                 </button>
-                <button onclick="switchSubMateri('hikmah')" id="subtab-hikmah" class="px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-navy-800 text-slate-300 hover:text-white">
+                <button onclick="switchSubMateri('hikmah')" id="subtab-hikmah" class="subtab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-navy-800 text-slate-300 hover:text-white whitespace-nowrap">
                     3. Hikmah & Bahaya Durhaka
                 </button>
-                <button onclick="switchSubMateri('manfaat')" id="subtab-manfaat" class="px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-navy-800 text-slate-300 hover:text-white">
-                    4. Manfaat Adab terhadap Orang Tua
+                <button onclick="switchSubMateri('manfaat')" id="subtab-manfaat" class="subtab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-navy-800 text-slate-300 hover:text-white whitespace-nowrap">
+                    4. Manfaat Adab
                 </button>
             </div>
 
@@ -267,12 +359,12 @@
             <div id="subcontent-dalil" class="card-navy p-6 rounded-xl space-y-6">
                 <div class="border-b border-slate-700 pb-3">
                     <h3 class="text-lg font-bold text-gold-400">Al-Qur'an Surah Al-Isra' [17]: 23-24</h3>
-                    <p class="text-xs text-slate-400">Pedoman utama kewajiban *Birrul Walidain* (Berbakti kepada Orang Tua)</p>
+                    <p class="text-xs text-slate-400">Pedoman utama kewajiban <em>Birrul Walidain</em> (Berbakti kepada Orang Tua)</p>
                 </div>
 
                 <!-- Quran Box -->
                 <div class="bg-navy-900 p-5 rounded-xl border border-gold-500/30 space-y-4">
-                    <p class="text-right text-xl md:text-2xl leading-loose font-serif text-gold-400" dir="rtl">
+                    <p class="text-right text-xl md:text-2xl leading-loose font-arabic text-gold-400" dir="rtl">
                         وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوٓا۟ إِلَّآ إِيَّاهُ وَبِٱلْوَٰلِدَيْنِ إِحْسَٰنًا ۚ إِمَّا يَبْلُغَنَّ عِندَكَ ٱلْكِبَرَ أَحَدُهُمَآ أَوْ كِلَاهُمَا فَلَا تَقُل لَّهُمَآ أُفٍّ وَلَا تَنْهَرْهُمَا وَقُل لَّهُمَا قَوْلًا كَرِيمًا
                     </p>
                     <div class="bg-navy-800 p-4 rounded-lg text-xs md:text-sm text-slate-200 border-l-4 border-gold-500 space-y-2">
@@ -290,7 +382,7 @@
                         <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
                             <li>Perintah berbakti disandingkan langsung setelah perintah Tauhid (Menyembah Allah).</li>
                             <li>Larangan keras mengucapkan kata "Ah", "Uff", atau kata-kata bernada kesal.</li>
-                            <li>Kewajiban berbicara dengan kata-kata mulia (*Qaulan Karima*).</li>
+                            <li>Kewajiban berbicara dengan kata-kata mulia (<em>Qaulan Karima</em>).</li>
                         </ul>
                     </div>
 
@@ -321,20 +413,20 @@
                         </div>
                         <ul class="text-xs text-slate-300 space-y-2">
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
+                                <span class="text-gold-400 font-bold">✓</span>
                                 <span><strong>Taat dan Patuh:</strong> Menjalankan perintah mereka selama tidak bertentangan dengan syariat agama.</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
-                                <span><strong>Membantu Tugas Rumah & Keluarga:</strong> Terlibat aktif membantu orang tua (misal: di pesisir membantu memilah hasil tangkapan ikan atau hasil kebun cengkeh/jagung secara sukarela).</span>
+                                <span class="text-gold-400 font-bold">✓</span>
+                                <span><strong>Membantu Tugas Rumah:</strong> Terlibat aktif membantu orang tua (misal: di pesisir membantu memilah hasil tangkapan ikan atau hasil kebun cengkeh/jagung).</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
+                                <span class="text-gold-400 font-bold">✓</span>
                                 <span><strong>Sopan Santun Bicara:</strong> Berbicara lembut, tidak memotong pembicaraan, dan tidak bernada tinggi.</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
-                                <span><strong>Mendoakan Setiap Hari:</strong> Mengucapkan doa *Rabbighfirlii waliwaalidayya warhamhumaa kamaa rabbayaanii shaghiiraa*.</span>
+                                <span class="text-gold-400 font-bold">✓</span>
+                                <span><strong>Mendoakan Setiap Hari:</strong> Mengucapkan doa <em>Rabbighfirlii waliwaalidayya warhamhumaa kamaa rabbayaanii shaghiiraa</em>.</span>
                             </li>
                         </ul>
                     </div>
@@ -347,19 +439,19 @@
                         </div>
                         <ul class="text-xs text-slate-300 space-y-2">
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
+                                <span class="text-gold-400 font-bold">✓</span>
                                 <span><strong>Mendoakan Ampunan:</strong> Rajin memohonkan ampunan dan rahmat bagi almarhum/almarhumah.</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
+                                <span class="text-gold-400 font-bold">✓</span>
                                 <span><strong>Menyambung Silaturahmi:</strong> Menjaga hubungan baik dengan kerabat dan sahabat-sahabat dekat orang tua.</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
+                                <span class="text-gold-400 font-bold">✓</span>
                                 <span><strong>Menunaikan Wasiat & Janji:</strong> Menyelesaikan janji atau hutang piutang yang sah sesuai syariat.</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <span class="text-gold-400">✔</span>
+                                <span class="text-gold-400 font-bold">✓</span>
                                 <span><strong>Bersedekah Atas Nama Orang Tua:</strong> Menginfakkan sebagian rezeki yang pahalanya diniatkan untuk orang tua.</span>
                             </li>
                         </ul>
@@ -380,7 +472,33 @@
             <div id="subcontent-hikmah" class="hidden card-navy p-6 rounded-xl space-y-6">
                 <div class="border-b border-slate-700 pb-3">
                     <h3 class="text-lg font-bold text-gold-400">Hikmah Birrul Walidain vs Bahaya Uququl Walidain</h3>
-                    <p class="text-xs text-slate-400">Dampak perilaku terhadap kehidupan di dunia dan akhirat.</p>
+                    <p class="text-xs text-slate-400">Perbandingan dampak sikap berbakti dan sikap durhaka kepada orang tua.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-emerald-950/40 p-5 rounded-xl border border-emerald-500/30 space-y-3">
+                        <h4 class="font-bold text-emerald-400 text-base flex items-center gap-2">
+                            <span>✨</span> Hikmah Berbakti (Birrul Walidain)
+                        </h4>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+                            <li>Mendapatkan Ridho Allah SWT dan dijamin pahala surga.</li>
+                            <li>Dipanjangkan umur dan dilapangkan rezekinya oleh Allah.</li>
+                            <li>Doa anak berbakti dikabulkan oleh Allah SWT.</li>
+                            <li>Mendapatkan keturunan yang saleh/salehah kelak.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-rose-950/40 p-5 rounded-xl border border-rose-500/30 space-y-3">
+                        <h4 class="font-bold text-rose-400 text-base flex items-center gap-2">
+                            <span>⚠️</span> Bahaya Durhaka (Uququl Walidain)
+                        </h4>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+                            <li>Termasuk salah satu dosa besar yang paling dimurkai Allah SWT.</li>
+                            <li>Balasannya disegerakan oleh Allah di dunia berupa kesengsaraan.</li>
+                            <li>Terhalang dari masuk surga dan aroma wangi surga.</li>
+                            <li>Amal ibadahnya tidak bernilai sempurna di sisi Allah.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -388,47 +506,44 @@
             <div id="subcontent-manfaat" class="hidden card-navy p-6 rounded-xl space-y-6">
                 <div class="border-b border-slate-700 pb-3">
                     <h3 class="text-lg font-bold text-gold-400">Manfaat Adab Terhadap Orang Tua</h3>
-                    <p class="text-xs text-slate-400">Dampak positif berbakti kepada orang tua bagi diri sendiri, keluarga, dan kehidupan bermasyarakat.</p>
+                    <p class="text-xs text-slate-400">Dampak positif berbakti bagi diri sendiri, keluarga, dan masyarakat.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- Bagi Diri Sendiri -->
                     <div class="bg-navy-900/90 p-5 rounded-xl border border-gold-500/30 space-y-3">
                         <div class="flex items-center gap-2 text-gold-400 font-bold text-base">
                             <span>👤</span>
-                            <h4>Manfaat Bagi Diri Sendiri</h4>
+                            <h4>Bagi Diri Sendiri</h4>
                         </div>
                         <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
-                            <li>Hati menjadi tenteram dan damai karena doa tulus senantiasa mengalir dari orang tua.</li>
-                            <li>Dimudahkan oleh Allah SWT dalam menuntut ilmu dan meraih cita-cita.</li>
-                            <li>Melapangkan rezeki dan memberikan keberkahan pada sisa usia.</li>
+                            <li>Hati menjadi tenteram dan damai karena doa tulus senantiasa mengalir.</li>
+                            <li>Dimudahkan dalam menuntut ilmu dan meraih cita-cita.</li>
+                            <li>Melapangkan rezeki dan memberikan keberkahan pada usia.</li>
                         </ul>
                     </div>
 
-                    <!-- Bagi Keluarga -->
                     <div class="bg-navy-900/90 p-5 rounded-xl border border-gold-500/30 space-y-3">
                         <div class="flex items-center gap-2 text-gold-400 font-bold text-base">
                             <span>🏠</span>
-                            <h4>Manfaat Bagi Keluarga</h4>
+                            <h4>Bagi Keluarga</h4>
                         </div>
                         <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
-                            <li>Menciptakan suasana rumah tangga yang harmonis, damai (*sakinah mawaddah wa rahmah*).</li>
-                            <li>Menjadi teladan terpuji (*uswah hasanah*) bagi adik-adik dan sanak saudara.</li>
-                            <li>Mempererat tali silaturahmi dan rasa saling menyayangi antagenerasi.</li>
+                            <li>Menciptakan suasana rumah tangga yang harmonis, damai (<em>sakinah mawaddah wa rahmah</em>).</li>
+                            <li>Menjadi teladan terpuji (<em>uswah hasanah</em>) bagi saudara.</li>
+                            <li>Mempererat tali silaturahmi antagenerasi.</li>
                         </ul>
                     </div>
 
-                    <!-- Bagi Masyarakat & Budaya Gorontalo -->
                     <div class="bg-navy-900/90 p-5 rounded-xl border border-gold-500/30 space-y-3">
                         <div class="flex items-center gap-2 text-gold-400 font-bold text-base">
                             <span>🌴</span>
-                            <h4>Manfaat Bagi Masyarakat</h4>
+                            <h4>Bagi Masyarakat</h4>
                         </div>
                         <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
-                            <li>Menumbuhkan budaya sopan santun dan saling menghormati di lingkungan madrasah dan desa.</li>
-                            <li>Memperkuat semangat gotong royong (*Huyula*) yang dilandasi saling peduli.</li>
-                            <li>Mewujudkan tatanan kehidupan bermasyarakat yang aman, tenteram, dan berakhlak mulia.</li>
+                            <li>Menumbuhkan budaya sopan santun di lingkungan madrasah dan desa.</li>
+                            <li>Memperkuat semangat gotong royong (<em>Huyula</em>).</li>
+                            <li>Mewujudkan kehidupan yang tenteram dan berakhlak mulia.</li>
                         </ul>
                     </div>
 
@@ -444,10 +559,10 @@
             
             <div class="bg-navy-800 p-4 rounded-xl border border-gold-500/30 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-xl font-bold text-gold-400">🎮 Laboratorium & Simulator Adab Interactive</h2>
+                    <h2 class="text-xl font-bold text-gold-400">🎮 Laboratorium & Simulator Adab Interaktif</h2>
                     <p class="text-xs text-slate-300">Uji keputusanmu dan latih keterampilan afektifmu melalui simulator kasus & permainan pengelompokan.</p>
                 </div>
-                <div class="flex gap-2">
+                <div>
                     <span class="px-3 py-1 bg-gold-500/20 text-gold-400 text-xs font-bold rounded-lg border border-gold-500/30">
                         Real-Time Feedback Enabled
                     </span>
@@ -460,7 +575,7 @@
                     <h3 class="text-base md:text-lg font-bold text-gold-400 flex items-center gap-2">
                         <span>🧪</span> Fitur A: Simulator Keputusan Real-Time "Studi Kasus Gorontalo"
                     </h3>
-                    <span class="text-xs text-slate-400">Skenario #1</span>
+                    <span id="sim-scenario-num" class="text-xs font-semibold px-2 py-1 bg-navy-900 border border-gold-500/30 text-gold-400 rounded">Skenario #1</span>
                 </div>
 
                 <!-- Scenario Display -->
@@ -473,18 +588,7 @@
 
                 <!-- Interactive Choices -->
                 <div id="sim-options-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <button onclick="makeChoice(1)" class="p-4 bg-navy-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-left transition-all hover:border-gold-500 group">
-                        <div class="text-xs font-bold text-gold-400 mb-1 group-hover:underline">Pilihan A</div>
-                        <p class="text-xs text-slate-300">Segera menaruh tas, tersenyum, dan membantu ibu hingga selesai baru minta izin bermain.</p>
-                    </button>
-                    <button onclick="makeChoice(2)" class="p-4 bg-navy-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-left transition-all hover:border-gold-500 group">
-                        <div class="text-xs font-bold text-gold-400 mb-1 group-hover:underline">Pilihan B</div>
-                        <p class="text-xs text-slate-300">Membantu ibu tetapi sambil bersungut-sungut dan mengeluh karena tertunda main game.</p>
-                    </button>
-                    <button onclick="makeChoice(3)" class="p-4 bg-navy-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-left transition-all hover:border-gold-500 group">
-                        <div class="text-xs font-bold text-gold-400 mb-1 group-hover:underline">Pilihan C</div>
-                        <p class="text-xs text-slate-300">Pura-pura tidak melihat dan langsung masuk kamar untuk bermain game bersama teman.</p>
-                    </button>
+                    <!-- Loaded dynamically via JS -->
                 </div>
 
                 <!-- Live Feedback & Reasoning Modal / Box -->
@@ -508,6 +612,12 @@
                     </div>
                 </div>
 
+                <div class="flex justify-end gap-2 pt-2">
+                    <button onclick="nextScenario()" class="px-4 py-2 bg-navy-800 hover:bg-slate-700 border border-gold-500/30 text-gold-400 text-xs font-bold rounded-lg transition-all">
+                        Skenario Selanjutnya 🔄
+                    </button>
+                </div>
+
             </div>
 
             <!-- FITUR B: TANTANGAN KLASIFIKASI BEHAVIOR (SORTING GAME) -->
@@ -517,19 +627,19 @@
                         <h3 class="text-base md:text-lg font-bold text-gold-400 flex items-center gap-2">
                             <span>🧩</span> Fitur B: Permainan Klasifikasi Perilaku Adab
                         </h3>
-                        <p class="text-xs text-slate-300">Klik atau Pilih kategori yang tepat untuk setiap kartu perilaku berikut!</p>
+                        <p class="text-xs text-slate-300">Pilih kategori yang tepat untuk setiap kartu perilaku di bawah ini!</p>
                     </div>
-                    <div class="text-xs text-slate-300">
+                    <div class="text-xs text-slate-300 bg-navy-900 px-3 py-1.5 rounded-lg border border-slate-700">
                         Skor Permainan: <span id="sort-score" class="font-bold text-gold-400 text-sm">0 / 6</span>
                     </div>
                 </div>
 
                 <!-- Item Card List for Sorting -->
                 <div id="sort-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Cards will be populated by JS -->
+                    <!-- Cards populated by JS -->
                 </div>
 
-                <div id="sort-complete-message" class="hidden p-4 bg-emerald-950/60 border border-emerald-500/50 rounded-xl text-center space-y-2">
+                <div id="sort-complete-message" class="hidden p-4 bg-emerald-950/80 border border-emerald-500/50 rounded-xl text-center space-y-2">
                     <p class="font-bold text-emerald-400 text-sm">🎉 Luar Biasa! Kamu Telah Menyelesaikan Permainan Klasifikasi Adab!</p>
                     <p class="text-xs text-slate-200">Kamu kini semakin memahami perbedaan jelas antara kebaikan Birrul Walidain dan larangan Uququl Walidain.</p>
                 </div>
@@ -543,179 +653,139 @@
         <!-- ================================================================= -->
         <section id="sec-kuis" class="hidden space-y-6">
             
-            <div class="bg-navy-800 p-4 rounded-xl border border-gold-500/30 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="bg-navy-800 p-4 rounded-xl border border-gold-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-xl font-bold text-gold-400">📝 Kuis Evaluasi Formatif Akidah Akhlak</h2>
-                    <p class="text-xs text-slate-300">Uji pemahamanmu dengan 5 butir soal standar HOTS lengkap dengan pembahasan.</p>
+                    <h2 class="text-xl font-bold text-gold-400">📝 Kuis Formatif Interaktif</h2>
+                    <p class="text-xs text-slate-300">Uji pemahaman teoritis dan pemahaman adabmu secara komprehensif.</p>
                 </div>
-                <div class="text-xs bg-navy-900 px-3 py-1.5 rounded-lg border border-slate-700">
-                    Progres: <span id="quiz-progress" class="font-bold text-gold-400">Form Identitas Siswa</span>
+                <div class="text-xs text-slate-300 bg-navy-900 px-3 py-1.5 rounded-lg border border-slate-700">
+                    Progres: <span id="quiz-progress-text" class="text-gold-400 font-bold">Soal 1 / 5</span>
                 </div>
             </div>
 
-            <!-- FORM IDENTITAS SISWA & PENGATURAN SERVER DATA -->
-            <div id="quiz-student-form" class="card-navy p-6 rounded-2xl border-2 border-gold-500/30 space-y-5">
-                <div class="border-b border-slate-700 pb-3">
-                    <h3 class="text-base md:text-lg font-bold text-gold-400 flex items-center gap-2">
-                        <span>👤</span> Identitas Peserta Didik
-                    </h3>
-                    <p class="text-xs text-slate-300">Isi nama lengkap dan kelas sebelum memulai pengerjaan kuis evaluasi.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-1.5">
-                        <label class="text-xs font-semibold text-slate-200">Nama Lengkap Siswa <span class="text-rose-400">*</span></label>
-                        <input type="text" id="input-student-name" placeholder="Contoh: Ahmad Mohamad" class="w-full px-4 py-2.5 bg-navy-900 border border-slate-700 rounded-xl text-xs md:text-sm text-white focus:border-gold-500 focus:outline-none">
-                    </div>
-                    <div class="space-y-1.5">
-                        <label class="text-xs font-semibold text-slate-200">Kelas / Rombel <span class="text-rose-400">*</span></label>
-                        <select id="input-student-class" class="w-full px-4 py-2.5 bg-navy-900 border border-slate-700 rounded-xl text-xs md:text-sm text-white focus:border-gold-500 focus:outline-none">
-                            <option value="">-- Pilih Kelas --</option>
-                            <option value="VII-1">Kelas VII-1</option>
-                            <option value="VII-2">Kelas VII-2</option>
-                            <option value="VII-3">Kelas VII-3</option>
-                            <option value="VII-4">Kelas VII-4</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Pengaturan URL Google Apps Script Web App -->
-                <div class="bg-navy-900/80 p-4 rounded-xl border border-slate-800 space-y-2">
-                    <div class="flex items-center justify-between">
-                        <label class="text-[11px] font-semibold text-gold-400 flex items-center gap-1.5">
-                            <span>⚙️</span> URL Web App Google Apps Script (Database Guru):
-                        </label>
-                        <button type="button" onclick="toggleGasConfig()" class="text-[10px] text-slate-400 hover:text-gold-400 underline">Ubah Web App URL</button>
-                    </div>
-                    <input type="url" id="input-gas-url" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3 py-2 bg-navy-950 border border-slate-700 rounded-lg text-xs text-slate-300 focus:border-gold-500 focus:outline-none">
-                    <p class="text-[10px] text-slate-400 italic">Hasil pengerjaan akan terintegrasi dan otomatis tersimpan ke Spreadsheet Guru.</p>
-                </div>
-
-                <div id="form-error-msg" class="hidden p-3 bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs rounded-lg">
-                    ⚠️ Silakan lengkapi Nama dan Kelas terlebih dahulu!
-                </div>
-
-                <button onclick="startQuizWithStudentInfo()" class="w-full py-3 bg-gold-500 hover:bg-gold-600 text-navy-900 font-extrabold rounded-xl shadow-lg transition-all text-xs md:text-sm">
-                    🚀 Mulai Pengerjaan Kuis Formatif
-                </button>
-            </div>
-
-            <!-- Quiz Card Container -->
-            <div id="quiz-container" class="hidden card-navy p-6 rounded-2xl border-2 border-gold-500/30 space-y-6">
+            <!-- Quiz Main Card -->
+            <div class="card-navy p-6 rounded-2xl border-2 border-gold-500/30 space-y-6">
                 
-                <!-- Question Header -->
-                <div class="space-y-2 border-b border-slate-700 pb-4">
-                    <span id="quiz-q-num" class="text-xs font-bold text-gold-500 uppercase tracking-wider">Soal #1</span>
-                    <h3 id="quiz-q-text" class="text-sm md:text-base font-semibold text-slate-100 leading-relaxed">
-                        Loading soal...
-                    </h3>
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div id="quiz-progress-bar" class="bg-gold-500 h-full w-1/5 transition-all duration-300"></div>
                 </div>
 
-                <!-- Answer Options -->
-                <div id="quiz-options" class="space-y-3">
-                    <!-- Dynamic Options -->
+                <!-- Question Screen -->
+                <div id="quiz-question-container" class="space-y-6">
+                    <div class="bg-navy-900 p-5 rounded-xl border border-slate-700">
+                        <span id="quiz-category" class="text-[10px] font-bold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded">
+                            Materi: Dalil & Praktik
+                        </span>
+                        <h3 id="quiz-question-title" class="text-base md:text-lg font-bold text-slate-100 mt-3 leading-relaxed">
+                            Loading pertanyaan...
+                        </h3>
+                    </div>
+
+                    <!-- Answers Grid -->
+                    <div id="quiz-answers-grid" class="grid grid-cols-1 gap-3">
+                        <!-- Options injected by JS -->
+                    </div>
+
+                    <!-- Explanation Box -->
+                    <div id="quiz-explanation-box" class="hidden p-4 rounded-xl border text-xs leading-relaxed space-y-1">
+                        <strong id="quiz-explanation-title" class="block font-bold"></strong>
+                        <p id="quiz-explanation-desc" class="text-slate-200"></p>
+                    </div>
+
+                    <!-- Action Navigation -->
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-700">
+                        <span class="text-xs text-slate-400">Pilih jawaban terbaik untuk melanjutkan.</span>
+                        <button id="quiz-next-btn" onclick="nextQuestion()" disabled class="px-6 py-2.5 bg-gold-500 opacity-50 cursor-not-allowed text-navy-900 font-bold text-xs rounded-xl shadow transition-all">
+                            Pertanyaan Selanjutnya →
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Instant Feedback Area -->
-                <div id="quiz-feedback" class="hidden p-4 rounded-xl border space-y-2 text-xs md:text-sm transition-all duration-300">
-                    <div id="quiz-feedback-status" class="font-bold"></div>
-                    <div id="quiz-feedback-explain" class="text-slate-200 leading-relaxed"></div>
+                <!-- Quiz Results Summary View -->
+                <div id="quiz-result-container" class="hidden text-center space-y-6 py-6">
+                    <div class="w-20 h-20 mx-auto bg-gold-500/20 rounded-full flex items-center justify-center border-2 border-gold-500 text-3xl">
+                        🏆
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-black text-white">Evaluasi Pembelajaran Selesai!</h3>
+                        <p class="text-xs text-slate-300 mt-1">Berikut adalah hasil capaian Kuis Formatif Akidah Akhlak milikmu:</p>
+                    </div>
+
+                    <div class="max-w-md mx-auto bg-navy-900 p-6 rounded-2xl border border-gold-500/40 space-y-4">
+                        <div class="text-4xl font-black text-gold-400" id="final-score-val">0</div>
+                        <p id="final-score-grade" class="text-xs font-semibold uppercase tracking-wider text-slate-300"></p>
+                        <div class="text-xs text-slate-300 border-t border-slate-800 pt-3" id="final-score-feedback"></div>
+                    </div>
+
+                    <div class="flex justify-center gap-4">
+                        <button onclick="resetQuiz()" class="px-6 py-3 bg-navy-800 hover:bg-slate-700 border border-gold-500/30 text-gold-400 font-bold text-xs rounded-xl transition-all">
+                            🔄 Ulangi Kuis Formatif
+                        </button>
+                        <button onclick="switchTab('simulasi')" class="px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold text-xs rounded-xl transition-all">
+                            🎮 Ke Laboratorium Adab
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Action Button -->
-                <div class="flex justify-end pt-2">
-                    <button id="btn-next-quiz" onclick="nextQuestion()" class="hidden px-6 py-2.5 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold rounded-xl text-xs md:text-sm transition-all">
-                        Lanjut ke Soal Berikutnya →
-                    </button>
-                </div>
-
-            </div>
-
-            <!-- Quiz Result View -->
-            <div id="quiz-result-card" class="hidden card-navy p-8 rounded-2xl border-2 border-gold-500/50 text-center space-y-6">
-                <div class="w-20 h-20 mx-auto rounded-full bg-gold-500/20 border-2 border-gold-500 flex items-center justify-center text-4xl">
-                    🏆
-                </div>
-                <div>
-                    <h3 class="text-2xl font-extrabold text-gold-400">Hasil Evaluasi Formatif</h3>
-                    <p id="result-student-info" class="text-xs text-slate-300 mt-1">Capaian Pembelajaran Adab terhadap Orang Tua</p>
-                </div>
-
-                <!-- Cloud Sync Status Box -->
-                <div id="quiz-sync-status" class="p-3 bg-navy-900 rounded-xl border border-slate-700 text-xs text-gold-400 flex items-center justify-center gap-2">
-                    <span class="animate-spin">⏳</span>
-                    <span>Menyimpan hasil ke Spreadsheet Database Guru...</span>
-                </div>
-
-                <div class="bg-navy-900/80 p-6 rounded-xl border border-slate-700 inline-block min-w-[240px]">
-                    <div class="text-xs text-slate-400 mb-1">Skor Akhir Kamu:</div>
-                    <div id="final-score" class="text-4xl font-black text-gold-400">0</div>
-                    <div id="final-badge" class="mt-2 text-xs font-bold text-emerald-400"></div>
-                </div>
-
-                <div id="final-summary-text" class="text-xs md:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
-                </div>
-
-                <div class="flex justify-center gap-3 pt-2">
-                    <button onclick="restartQuiz()" class="px-6 py-2.5 bg-navy-800 hover:bg-slate-700 text-white font-semibold rounded-xl text-xs border border-gold-500/30 transition-all">
-                        🔄 Ulangi Kuis
-                    </button>
-                    <button onclick="switchTab('simulasi')" class="px-6 py-2.5 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold rounded-xl text-xs transition-all">
-                        🎮 Kembali ke Simulator
-                    </button>
-                </div>
             </div>
 
         </section>
 
         <!-- ================================================================= -->
-        <!-- TAB 5: PROFIL PENGEMBANG -->
+        <!-- TAB 5: PROFIL PENGEMBANG & INSTITUSI -->
         <!-- ================================================================= -->
         <section id="sec-pengembang" class="hidden space-y-6">
             
-            <div class="card-navy p-6 md:p-8 rounded-2xl border-2 border-gold-500/40 glow-gold max-w-3xl mx-auto space-y-6">
-                <div class="text-center space-y-2 border-b border-slate-700 pb-4">
-                    <h2 class="text-2xl font-extrabold text-gold-400">👤 Profil Pengembang Media</h2>
-                    <p class="text-xs text-slate-300">Pengembang Media Pembelajaran Interaktif (MPI) Akidah Akhlak MTs</p>
+            <div class="card-navy p-6 md:p-8 rounded-2xl border-2 border-gold-500/30 space-y-6">
+                
+                <div class="border-b border-slate-700 pb-4 text-center md:text-left">
+                    <h2 class="text-2xl font-bold text-gold-400">👤 Profil Tim Pengembang & Institusi</h2>
+                    <p class="text-xs text-slate-300 mt-1">Media Pembelajaran Interaktif berbasis Kurikulum Merdeka (Fase D MTs)</p>
                 </div>
 
-                <div class="flex flex-col md:flex-row items-center gap-6 bg-navy-900/90 p-6 rounded-xl border border-gold-500/30">
-                    <!-- Foto Pengembang dengan Tautan -->
-                    <div class="shrink-0 text-center">
-                        <a href="https://freeimage.host/i/na4zwp1" target="_blank" rel="noopener noreferrer" class="inline-block relative group">
-                            <img src="https://iili.io/na4zwp1.md.jpg" alt="Foto Pengembang" class="w-36 h-48 object-cover rounded-xl border-2 border-gold-400 shadow-lg transition-transform duration-300 group-hover:scale-105" border="0">
-                            <div class="absolute inset-0 rounded-xl bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-[11px] text-gold-300 font-bold">
-                                🔍 Lihat Foto
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Developer Card -->
+                    <div class="bg-navy-900 p-5 rounded-xl border border-slate-700 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full bg-gold-500/20 border-2 border-gold-500 flex items-center justify-center text-2xl font-bold text-gold-400">
+                                ☪️
                             </div>
-                        </a>
-                    </div>
-
-                    <!-- Informasi Pengembang -->
-                    <div class="space-y-3 text-center md:text-left flex-grow">
-                        <div>
-                            <span class="px-2.5 py-1 bg-gold-500/20 text-gold-400 text-[11px] font-bold rounded-md border border-gold-500/30 inline-block mb-1">
-                                Tim Pengembang Media
-                            </span>
-                            <h3 class="text-xl font-bold text-white">Pengembang MPI Akidah Akhlak</h3>
-                            <p class="text-xs text-slate-300 font-medium">Kanwil Kementerian Agama Provinsi Gorontalo</p>
+                            <div>
+                                <h3 class="font-bold text-white text-base">Tim Pengembang MPI Akidah Akhlak</h3>
+                                <p class="text-xs text-gold-400">Guru & Pengembang Media Pembelajaran</p>
+                                <p class="text-[11px] text-slate-400">MTs Negeri 3 Kab. Gorontalo</p>
+                            </div>
                         </div>
-
-                        <div class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                            <p><strong>🎯 Dedikasi:</strong> Didedikasikan untuk pengembangan media digital interaktif bagi guru dan peserta didik MTs Kelas VII / Fase D.</p>
-                            <p><strong>🌴 Konteks Lokal:</strong> Mengintegrasikan kearifan budaya Gorontalo (<em>Huyula</em>) dan motto daerah <em>"Adat bersendi Syarak, Syarak bersendi Kitabullah"</em>.</p>
+                        <div class="text-xs text-slate-300 leading-relaxed border-t border-slate-800 pt-3 space-y-1.5">
+                            <p><strong>Spesifikasi Media:</strong> Interactive Web Application (Single Page Application - SPA)</p>
+                            <p><strong>Teknologi:</strong> HTML5, Tailwind CSS, JavaScript (ES6+), Web Audio Synth API</p>
+                            <p><strong>Sasaran Peserta Didik:</strong> Kelas VII Madrasah Tsanawiyah (MTs)</p>
                         </div>
                     </div>
+
+                    <!-- Institution Card -->
+                    <div class="bg-navy-900 p-5 rounded-xl border border-slate-700 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full bg-blue-500/20 border-2 border-blue-400 flex items-center justify-center text-2xl">
+                                🏛️
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-base">Kanwil Kemenag Prov. Gorontalo</h3>
+                                <p class="text-xs text-blue-400">Bidang Pendidikan Madrasah</p>
+                                <p class="text-[11px] text-slate-400">Provinsi Gorontalo, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-300 leading-relaxed border-t border-slate-800 pt-3 space-y-1.5">
+                            <p><strong>Visi Pembelajaran:</strong> Mewujudkan Pendidikan Madrasah Berilmu, Berakhlak Mulia, dan Unggul Bermartabat.</p>
+                            <p><strong>Landasan Budaya:</strong> <em>"Adat Bersendi Syarak, Syarak Bersendi Kitabullah"</em></p>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="bg-navy-900/60 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
-                    <h4 class="font-bold text-gold-400 flex items-center gap-1.5">
-                        <span>💡</span>
-                        <span>Catatan Penggunaan Offline:</span>
-                    </h4>
-                    <p class="leading-relaxed">
-                        Aplikasi ini dirancang sebagai <em>Single File HTML5</em> yang dapat berjalan penuh tanpa koneksi internet (100% Offline) untuk mendukung proses pembelajaran di madrasah dengan kondisi akses jaringan fluktuatif.
-                    </p>
-                </div>
             </div>
 
         </section>
@@ -723,136 +793,262 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-navy-deep border-t border-slate-800 py-4 mt-8 text-center text-xs text-slate-400">
-        <div class="max-w-7xl mx-auto px-4 space-y-1">
-            <p class="font-semibold text-slate-300">
-                Media Pembelajaran Interaktif (MPI) • Akidah Akhlak MTs Kelas VII
-            </p>
-            <p class="text-[11px] text-slate-300">
-                Dikembangkan untuk Guru Madrasah di Lingkungan Kanwil Kemenag Provinsi Gorontalo
-            </p>
+    <footer class="bg-navy-deep border-t border-slate-800 py-4 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Media Pembelajaran Interaktif (MPI) Akidah Akhlak MTs • Kanwil Kementerian Agama Provinsi Gorontalo</p>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT LOGIC ENGINE -->
     <script>
-        let studentData = {
-            name: '',
-            class: '',
-            startTime: null,
-            endTime: null,
-            duration: ''
-        };
+        // Audio Synth Engine using Web Audio API for backsound ambient tone
+        let audioCtx = null;
+        let isAudioPlaying = true;
+        let ambientOsc = null;
+        let ambientGain = null;
 
-        // URL Web App Google Apps Script terintegrasi
-        let DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwEZNtEZwLw54mYILiiWYWm2EjvCLvAQdLFagcR1apPh0BpVbHZgGCWCabwv90VXoiHbA/exec";
-
-        /* ------------------------------------------------------------------ */
-        /* TAB NAVIGATION LOGIC                                               */
-        /* ------------------------------------------------------------------ */
-        function switchTab(tabName) {
-            const tabs = ['beranda', 'materi', 'simulasi', 'kuis', 'pengembang'];
-            
-            tabs.forEach(tab => {
-                const sec = document.getElementById(`sec-${tab}`);
-                const btn = document.getElementById(`tab-${tab}`);
-                if (tab === tabName) {
-                    sec.classList.remove('hidden');
-                    btn.classList.add('active');
-                } else {
-                    sec.classList.add('hidden');
-                    btn.classList.remove('active');
+        function initAudioEngine() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                    
+                    // Create soft ambient oscillator
+                    ambientOsc = audioCtx.createOscillator();
+                    ambientGain = audioCtx.createGain();
+                    
+                    ambientOsc.type = 'sine';
+                    ambientOsc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3 note
+                    
+                    ambientGain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+                    
+                    ambientOsc.connect(ambientGain);
+                    ambientGain.connect(audioCtx.destination);
+                    ambientOsc.start();
                 }
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function switchSubMateri(subName) {
-            const subs = ['dalil', 'bentuk', 'hikmah', 'manfaat'];
-            subs.forEach(s => {
-                const content = document.getElementById(`subcontent-${s}`);
-                const btn = document.getElementById(`subtab-${s}`);
-                if (s === subName) {
-                    content.classList.remove('hidden');
-                    btn.className = "px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-gold-500 text-navy-900";
-                } else {
-                    content.classList.add('hidden');
-                    btn.className = "px-4 py-2 text-xs md:text-sm font-semibold rounded-t-lg bg-navy-800 text-slate-300 hover:text-white";
-                }
-            });
-        }
-
-        /* ------------------------------------------------------------------ */
-        /* FITUR A: SIMULATOR KEPUTUSAN REAL-TIME                             */
-        /* ------------------------------------------------------------------ */
-        function makeChoice(optionIndex) {
-            const feedbackBox = document.getElementById('sim-feedback-box');
-            const title = document.getElementById('sim-feedback-title');
-            const scoreText = document.getElementById('sim-feedback-score');
-            const desc = document.getElementById('sim-feedback-desc');
-            const reasoning = document.getElementById('sim-feedback-reasoning');
-            const meterBar = document.getElementById('meter-bar');
-            const meterText = document.getElementById('meter-text');
-
-            feedbackBox.classList.remove('hidden');
-
-            if (optionIndex === 1) {
-                feedbackBox.className = "p-5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 space-y-3";
-                title.textContent = "✅ Keputusan Sangat Terpuji (Birrul Walidain)";
-                title.className = "font-bold text-sm text-emerald-400";
-                scoreText.textContent = "Skor Adab: +100";
-                scoreText.className = "text-xs font-bold px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
-                
-                desc.textContent = "Kamu mendahulukan kepentingan dan keringanan beban orang tua di atas kesenangan pribadimu. Ibu merasa sangat bahagia dan terbantu.";
-                reasoning.textContent = "💡 Alasan Edukatif: Sebagaimana ajaran Rasulullah SAW, membantu orang tua saat mereka membutuhkan bantuan adalah salah satu amalan paling dicintai Allah melebihi ibadah sunnah.";
-                
-                meterBar.style.width = "100%";
-                meterBar.className = "bg-emerald-500 h-full transition-all duration-500";
-                meterText.textContent = "Sangat Bahagia & Ridho (100%)";
-                meterText.className = "text-emerald-400 font-bold";
-
-            } else if (optionIndex === 2) {
-                feedbackBox.className = "p-5 rounded-xl border border-amber-500/50 bg-amber-950/40 space-y-3";
-                title.textContent = "⚠️ Keputusan Kurang Tepat (Terdapat Bahasa Kesal)";
-                title.className = "font-bold text-sm text-amber-400";
-                scoreText.textContent = "Skor Adab: +40";
-                scoreText.className = "text-xs font-bold px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30";
-                
-                desc.textContent = "Meskipun kamu akhirnya membantu, sikap mengeluh dan bersungut-sungut membuat hati orang tua merasa sedih dan merasa memberatkanmu.";
-                reasoning.textContent = "💡 Alasan Edukatif: Surah Al-Isra' ayat 23 melarang keras perkataan 'Ah' atau ungkapan kesal. Bantuan yang disertai keluhan mengurangi keberkahan pahala berbakti.";
-                
-                meterBar.style.width = "40%";
-                meterBar.className = "bg-amber-500 h-full transition-all duration-500";
-                meterText.textContent = "Agak Sedih / Kurang Ridho (40%)";
-                meterText.className = "text-amber-400 font-bold";
-
-            } else if (optionIndex === 3) {
-                feedbackBox.className = "p-5 rounded-xl border border-rose-500/50 bg-rose-950/40 space-y-3";
-                title.textContent = "❌ Keputusan Tercela (Mendekati Uququl Walidain)";
-                title.className = "font-bold text-sm text-rose-400";
-                scoreText.textContent = "Skor Adab: 0";
-                scoreText.className = "text-xs font-bold px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30";
-                
-                desc.textContent = "Kamu acuh tak acuh terhadap kesulitan orang tua demi kesenangan sementara. Hal ini menyakiti perasaan orang tua.";
-                reasoning.textContent = "💡 Alasan Edukatif: Mementingkan permainan daripada orang tua yang sedang kesulitan merupakan indikasi sikap acuh yang dilarang agama dan merusak keberkahan hidup.";
-                
-                meterBar.style.width = "10%";
-                meterBar.className = "bg-rose-500 h-full transition-all duration-500";
-                meterText.textContent = "Sangat Kecewa / Murka (10%)";
-                meterText.className = "text-rose-400 font-bold";
             }
         }
 
-        /* ------------------------------------------------------------------ */
-        /* FITUR B: KLASIFIKASI PERILAKU (SORTING GAME)                       */
-        /* ------------------------------------------------------------------ */
+        function toggleAudio() {
+            isAudioPlaying = !isAudioPlaying;
+            const icon = document.getElementById('audio-icon');
+            const text = document.getElementById('audio-text');
+            
+            if (isAudioPlaying) {
+                if (ambientGain && audioCtx) {
+                    ambientGain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+                }
+                icon.innerText = '🔊';
+                text.innerText = 'Audio Backsound: ON';
+            } else {
+                if (ambientGain && audioCtx) {
+                    ambientGain.gain.setValueAtTime(0, audioCtx.currentTime);
+                }
+                icon.innerText = '🔇';
+                text.innerText = 'Audio Backsound: OFF';
+            }
+        }
+
+        function playBeep(freq = 440, type = 'sine', duration = 0.15) {
+            if (!isAudioPlaying) return;
+            try {
+                if (!audioCtx) initAudioEngine();
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log('Audio init on user interaction');
+            }
+        }
+
+        // Cover Screen Handler
+        function startMPI() {
+            initAudioEngine();
+            playBeep(523.25, 'triangle', 0.2); // C5
+            document.getElementById('cover-screen').classList.add('hidden-cover');
+        }
+
+        function showCover() {
+            document.getElementById('cover-screen').classList.remove('hidden-cover');
+        }
+
+        function switchTab(tabId) {
+            playBeep(440, 'sine', 0.1);
+            
+            // Hide all sections
+            const sections = ['beranda', 'materi', 'simulasi', 'kuis', 'pengembang'];
+            sections.forEach(sec => {
+                document.getElementById(`sec-${sec}`).classList.add('hidden');
+                document.getElementById(`tab-${sec}`).classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(`sec-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchSubMateri(subId) {
+            playBeep(380, 'sine', 0.1);
+            const subtabs = ['dalil', 'bentuk', 'hikmah', 'manfaat'];
+            subtabs.forEach(sub => {
+                document.getElementById(`subcontent-${sub}`).classList.add('hidden');
+                document.getElementById(`subtab-${sub}`).classList.remove('active');
+                document.getElementById(`subtab-${sub}`).classList.remove('bg-gold-500', 'text-navy-900');
+                document.getElementById(`subtab-${sub}`).classList.add('bg-navy-800', 'text-slate-300');
+            });
+
+            document.getElementById(`subcontent-${subId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`subtab-${subId}`);
+            activeBtn.classList.add('active', 'bg-gold-500', 'text-navy-900');
+            activeBtn.classList.remove('bg-navy-800', 'text-slate-300');
+        }
+
+        const scenarios = [
+            {
+                id: 1,
+                title: "Studi Kasus #1: Membantu Orang Tua vs Main Game Online",
+                text: "Pulang dari madrasah di daerah pesisir Kota Gorontalo, kamu melihat ibumu sedang kerepotan mengangkat ikan hasil olahan dan menjemur bahan di halaman rumah. Di saat yang sama, teman-temanmu mengajak main game online bersama. Apa tindakan yang kamu ambil?",
+                options: [
+                    {
+                        text: "Segera menaruh tas, tersenyum, dan membantu ibu hingga selesai baru minta izin bermain.",
+                        title: "Pilihan Sangat Terpuji! (Birrul Walidain)",
+                        desc: "Kamu mendahulukan kepentingan orang tua dengan ceria tanpa diminta. Tindakan ini mencerminkan semangat Huyula (gotong royong) dan membuat hati ibu bahagia.",
+                        reasoning: "Allah SWT menyukai anak yang mendahulukan kebahagiaan orang tua daripada kesenangan pribadi yang menunda kebaikan.",
+                        score: 100,
+                        barWidth: "100%",
+                        meterText: "Sangat Bahagia (100%)",
+                        statusClass: "bg-emerald-950/80 border-emerald-500 text-emerald-300"
+                    },
+                    {
+                        text: "Membantu ibu tetapi sambil bersungut-sungut dan mengeluh karena tertunda main game.",
+                        title: "Pilihan Kurang Tepat!",
+                        desc: "Meskipun kamu membantu secara fisik, sikap bersungut-sungut dan mengeluh mendekati larangan mengucapkan kata 'ah' dalam Surah Al-Isra' ayat 23.",
+                        reasoning: "Berbakti memerlukan kesucian niat dan kelembutan sikap, bukan sekadar menggugurkan kewajiban dengan mengeluh.",
+                        score: 40,
+                        barWidth: "40%",
+                        meterText: "Sedih & Kecewa (40%)",
+                        statusClass: "bg-amber-950/80 border-amber-500 text-amber-300"
+                    },
+                    {
+                        text: "Pura-pura tidak melihat dan langsung masuk kamar untuk bermain game bersama teman.",
+                        title: "Pilihan Buruk (Mendekati Uququl Walidain)!",
+                        desc: "Mengabaikan ibu yang sedang kesulitan demi permainan adalah wujud acuh tak acuh yang menyakiti perasaan orang tua.",
+                        reasoning: "Sikap acuh tak acuh kepada orang tua dapat menghilangkan keberkahan umur dan memicu kemurkaan Allah SWT.",
+                        score: 10,
+                        barWidth: "10%",
+                        meterText: "Sangat Terluka (10%)",
+                        statusClass: "bg-rose-950/80 border-rose-500 text-rose-300"
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Studi Kasus #2: Panggilan Orang Tua Saat Belajar",
+                text: "Saat kamu sedang serius mengerjakan tugas sekolah di meja belajar, ayah memanggilmu untuk meminta bantuan mengarahkan selang air atau mengambilkan barang. Bagaimana respons pertamamu?",
+                options: [
+                    {
+                        text: "Segera menjawab 'Labaik/Ya Ayah' dengan lembut, mendatangi ayah, dan membantu urusannya.",
+                        title: "Pilihan Sangat Tepat!",
+                        desc: "Menjawab panggilan orang tua dengan santun dan bergegas menghampiri adalah adab utama murid madrasah.",
+                        reasoning: "Para ulama sepakat bahwa menyahut panggilan orang tua secara santun adalah kewajiban yang didahulukan.",
+                        score: 100,
+                        barWidth: "100%",
+                        meterText: "Sangat Ridho (100%)",
+                        statusClass: "bg-emerald-950/80 border-emerald-500 text-emerald-300"
+                    },
+                    {
+                        text: "Berteriak keras dari kamar 'Nanti dulu, lagi sibuk!', baru keluar setelah selesai.",
+                        title: "Pilihan Tidak Sopan!",
+                        desc: "Meninggikan suara di hadapan atau dari kejauhan kepada orang tua melanggar adab 'Qaulan Karima'.",
+                        reasoning: "Suara keras dan bernada tinggi dapat mengagetkan dan melukai perasaan orang tua.",
+                        score: 30,
+                        barWidth: "30%",
+                        meterText: "Terkecewakan (30%)",
+                        statusClass: "bg-rose-950/80 border-rose-500 text-rose-300"
+                    },
+                    {
+                        text: "Acuh dan berpura-pura tidak mendengar panggilan ayah.",
+                        title: "Pilihan Durhaka!",
+                        desc: "Sengaja membisu saat dipanggil orang tua menunjukkan sikap tidak menghargai keberadaan mereka.",
+                        reasoning: "Sikap ini merusak keharmonisan rumah tangga dan menghilangkan keridhaan Allah.",
+                        score: 10,
+                        barWidth: "10%",
+                        meterText: "Sangat Kecewa (10%)",
+                        statusClass: "bg-rose-950/80 border-rose-500 text-rose-300"
+                    }
+                ]
+            }
+        ];
+
+        let currentScenarioIdx = 0;
+
+        function renderScenario() {
+            const sc = scenarios[currentScenarioIdx];
+            document.getElementById('sim-scenario-num').innerText = `Skenario #${sc.id}`;
+            document.getElementById('sim-scenario-text').innerText = sc.text;
+            
+            const optionsContainer = document.getElementById('sim-options-container');
+            optionsContainer.innerHTML = '';
+
+            sc.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "p-4 bg-navy-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-left transition-all hover:border-gold-500 group space-y-1";
+                btn.onclick = () => selectChoice(idx);
+                btn.innerHTML = `
+                    <div class="text-xs font-bold text-gold-400 group-hover:underline">Pilihan ${String.fromCharCode(65 + idx)}</div>
+                    <p class="text-xs text-slate-300">${opt.text}</p>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+
+            // Reset Feedback Box
+            document.getElementById('sim-feedback-box').classList.add('hidden');
+        }
+
+        function selectChoice(optionIdx) {
+            const sc = scenarios[currentScenarioIdx];
+            const opt = sc.options[optionIdx];
+
+            playBeep(opt.score >= 80 ? 600 : 300, 'sine', 0.2);
+
+            const feedbackBox = document.getElementById('sim-feedback-box');
+            feedbackBox.className = `p-5 rounded-xl border space-y-3 transition-all duration-300 ${opt.statusClass}`;
+            feedbackBox.classList.remove('hidden');
+
+            document.getElementById('sim-feedback-title').innerText = opt.title;
+            document.getElementById('sim-feedback-score').innerText = `Skor Adab: ${opt.score}/100`;
+            document.getElementById('sim-feedback-desc').innerText = opt.desc;
+            document.getElementById('sim-feedback-reasoning').innerText = `💡 Refleksi Syariat: ${opt.reasoning}`;
+
+            // Update Emotional Meter
+            document.getElementById('meter-bar').style.width = opt.barWidth;
+            document.getElementById('meter-text').innerText = opt.meterText;
+        }
+
+        function nextScenario() {
+            currentScenarioIdx = (currentScenarioIdx + 1) % scenarios.length;
+            renderScenario();
+        }
+
         const sortItems = [
-            { id: 1, text: "Mendengarkan dengan khidmat saat orang tua sedang memberi nasihat.", correct: "terpuji" },
-            { id: 2, text: "Memotong pembicaraan orang tua dengan nada suara lebih tinggi.", correct: "tercela" },
-            { id: 3, text: "Membantu merapikan rumah atau hasil perkebunan tanpa diminta.", correct: "terpuji" },
-            { id: 4, text: "Membanting pintu kamar saat permintaan uang jajan tidak dituruti.", correct: "tercela" },
-            { id: 5, text: "Mendoakan ampunan bagi orang tua setiap selesai shalat fardhu.", correct: "terpuji" },
-            { id: 6, text: "Pura-pura tidur saat dipanggil oleh ibu untuk dimintai bantuan.", correct: "tercela" }
+            { id: 1, text: "Mengucapkan kata 'Ah' atau 'Uff' saat diminta tolong orang tua", type: "uquq" },
+            { id: 2, text: "Mendoakan ampunan untuk orang tua setiap selesai shalat fardhu", type: "birr" },
+            { id: 3, text: "Membantu pekerjaan rumah (Huyula) tanpa perlu bersungut-sungut", type: "birr" },
+            { id: 4, text: "Membentak atau memotong pembicaraan orang tua saat dinasihati", type: "uquq" },
+            { id: 5, text: "Menyambung silaturahmi dengan sahabat karib orang tua yang telah wafat", type: "birr" },
+            { id: 6, text: "Berbohong dan menyembunyikan nilai sekolah demi menghindari teguran", type: "uquq" }
         ];
 
         let sortAnswers = {};
@@ -861,33 +1057,19 @@
             const grid = document.getElementById('sort-cards-grid');
             grid.innerHTML = '';
 
-            sortItems.forEach((item, index) => {
+            sortItems.forEach((item) => {
                 const card = document.createElement('div');
-                card.className = "bg-navy-900 p-4 rounded-xl border border-slate-700 flex flex-col justify-between space-y-3";
+                card.className = "bg-navy-900 p-4 rounded-xl border border-slate-700 flex flex-col justify-between gap-3";
+                card.id = `sort-card-${item.id}`;
                 
-                const answered = sortAnswers[item.id];
-                let statusBadge = '';
-                if (answered) {
-                    if (answered === item.correct) {
-                        statusBadge = `<span class="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">Tepat! ✅</span>`;
-                    } else {
-                        statusBadge = `<span class="text-[10px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2 py-0.5 rounded">Kurang Tepat ❌</span>`;
-                    }
-                }
-
                 card.innerHTML = `
-                    <div class="flex items-start justify-between gap-2">
-                        <span class="text-xs text-slate-300 leading-relaxed font-medium">#${index+1}. ${item.text}</span>
-                        ${statusBadge}
-                    </div>
+                    <p class="text-xs md:text-sm text-slate-200">${item.text}</p>
                     <div class="flex gap-2 pt-2 border-t border-slate-800">
-                        <button onclick="checkSort(${item.id}, 'terpuji')" 
-                            class="flex-1 py-1.5 px-3 text-xs font-bold rounded-lg transition-all ${answered === 'terpuji' ? 'bg-emerald-500 text-navy-900' : 'bg-navy-800 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30'}">
-                            👍 Adab Terpuji
+                        <button onclick="answerSort(${item.id}, 'birr')" id="btn-birr-${item.id}" class="flex-1 py-1.5 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-400 text-xs font-bold rounded-lg transition-all">
+                            💚 Birrul Walidain (Berbakti)
                         </button>
-                        <button onclick="checkSort(${item.id}, 'tercela')" 
-                            class="flex-1 py-1.5 px-3 text-xs font-bold rounded-lg transition-all ${answered === 'tercela' ? 'bg-rose-500 text-navy-900' : 'bg-navy-800 hover:bg-rose-600/30 text-rose-400 border border-rose-500/30'}">
-                            👎 Perilaku Tercela
+                        <button onclick="answerSort(${item.id}, 'uquq')" id="btn-uquq-${item.id}" class="flex-1 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-500/40 text-rose-400 text-xs font-bold rounded-lg transition-all">
+                            ❌ Uququl Walidain (Durhaka)
                         </button>
                     </div>
                 `;
@@ -895,315 +1077,217 @@
             });
         }
 
-        function checkSort(itemId, userChoice) {
-            sortAnswers[itemId] = userChoice;
-            renderSortGame();
+        function answerSort(itemId, selectedType) {
+            const item = sortItems.find(i => i.id === itemId);
+            const isCorrect = item.type === selectedType;
 
-            // Calculate total correct
-            let correctCount = 0;
-            sortItems.forEach(item => {
-                if (sortAnswers[item.id] === item.correct) {
-                    correctCount++;
-                }
-            });
+            playBeep(isCorrect ? 587.33 : 261.63, 'sine', 0.15);
 
-            document.getElementById('sort-score').textContent = `${correctCount} / ${sortItems.length}`;
+            sortAnswers[itemId] = isCorrect;
 
-            if (Object.keys(sortAnswers).length === sortItems.length && correctCount === sortItems.length) {
+            const card = document.getElementById(`sort-card-${itemId}`);
+            const btnBirr = document.getElementById(`btn-birr-${itemId}`);
+            const btnUquq = document.getElementById(`btn-uquq-${itemId}`);
+
+            if (isCorrect) {
+                card.className = "bg-emerald-950/40 p-4 rounded-xl border-2 border-emerald-500 flex flex-col justify-between gap-3";
+            } else {
+                card.className = "bg-rose-950/40 p-4 rounded-xl border-2 border-rose-500 flex flex-col justify-between gap-3";
+            }
+
+            // Calculate Score
+            const correctCount = Object.values(sortAnswers).filter(v => v === true).length;
+            document.getElementById('sort-score').innerText = `${correctCount} / ${sortItems.length}`;
+
+            if (Object.keys(sortAnswers).length === sortItems.length) {
                 document.getElementById('sort-complete-message').classList.remove('hidden');
             }
         }
 
-        /* ------------------------------------------------------------------ */
-        /* FITUR C: KUIS EVALUASI FORMATIF + INTEGRASI DATABASE GOOGLE SHEETS  */
-        /* ------------------------------------------------------------------ */
         const quizData = [
             {
-                q: "Di dalam Al-Qur'an Surah Al-Isra' ayat 23, Allah SWT secara tegas melarang perkataan 'ah' atau 'uff' kepada orang tua. Mengapa ungkapan sederhana tersebut sangat dilarang dalam syariat Islam?",
+                category: "Dalil Naqli",
+                question: "Dalam Al-Qur'an Surah Al-Isra' ayat 23, perkataan apakah yang secara tegas dilarang diucapkan kepada orang tua?",
                 options: [
-                    "A. Karena kata tersebut dapat memicu percekcokan terbuka di depan umum.",
-                    "B. Karena ucapan tersebut menyimbolkan bentuk kesal, ketidakikhlasan, dan awal dari sikap meremehkan orang tua.",
-                    "C. Karena kata tersebut tidak terdapat dalam kamus bahasa Arab standar.",
-                    "D. Karena hanya berlaku apabila orang tua sudah berusia sangat lanjut."
+                    "Perkataan meminta uang",
+                    "Perkataan 'Ah' atau 'Uff'",
+                    "Perkataan pamit belajar",
+                    "Perkataan meminta maaf"
                 ],
-                answer: 1,
-                optionKeys: ["A", "B", "C", "D"],
-                explanation: "Pembahasan: Larangan perkataan 'ah' (uff) merupakan bentuk larangan paling mendasar. Jika kata paling ringan yang menunjukkan rasa gusar saja dilarang, apalagi tindakan yang lebih kasar seperti membentak atau menyakiti fisik."
+                correct: 1,
+                explanation: "Allah SWT melarang keras mengucapkan kata 'Ah' atau 'Uff' karena kata tersebut merupakan bentuk penolakan atau keluhan paling mendasar yang dapat melukai perasaan orang tua."
             },
             {
-                q: "Ahmad adalah seorang siswa MTs di Gorontalo. Saat ia sedang konsentrasi mengerjakan tugas kelompok, ibunya meminta bantuan untuk mengantarkan keperluan ke rumah tetangga. Sikap Ahmad yang paling mencerminkan adab mulia adalah...",
+                category: "Hadits Nabi SAW",
+                question: "Menurut hadits Riwayat Tirmidzi & Al-Hakim, keridhaan Allah SWT sangat tergantung kepada...",
                 options: [
-                    "A. Menolak dengan tegas karena tugas sekolah jauh lebih penting dari urusan lain.",
-                    "B. Pura-pura tidak mendengar dan melanjutkan pengerjaan tugas.",
-                    "C. Menghentikan tugas sejenak, merespon dengan sopan, dan segera membantu ibu dengan ikhlas.",
-                    "D. Membantu ibu tetapi dengan wajah cemberut agar ibu merasa bersalah."
+                    "Banyaknya harta benda yang dimiliki",
+                    "Keridhaan kedua orang tua",
+                    "Tingginya jabatan seseorang",
+                    "Banyaknya teman di media sosial"
                 ],
-                answer: 2,
-                optionKeys: ["A", "B", "C", "D"],
-                explanation: "Pembahasan: Seorang anak yang beradab harus senantiasa menyambut panggila orang tua dengan tutur kata sopan dan bantuan penuh keikhlasan, tanpa mengedepankan ego atau emosi."
+                correct: 1,
+                explanation: "Rasulullah SAW bersabda bahwa keridhaan Allah tergantung pada keridhaan orang tua, dan kemurkaan Allah tergantung pada kemurkaan orang tua."
             },
             {
-                q: "Salah satu kearifan lokal Gorontalo adalah semangat 'Huyula' (gotong royong). Bagaimana penerapan semangat Huyula dalam kaitannya dengan adab terhadap orang tua di rumah?",
+                category: "Bentuk Adab Praktis",
+                question: "Manakah di antara tindakan berikut yang merupakan adab berbakti kepada orang tua yang telah meninggal dunia?",
                 options: [
-                    "A. Menunggu permohonan bantuan dari orang tua baru mau bergerak.",
-                    "B. Inisiatif aktif membantu pekerjaan orang tua sehari-hari tanpa harus selalu diperintah.",
-                    "C. Meminta imbalan uang jajan setiap kali membantu pekerjaan di rumah.",
-                    "D. Menyerahkan seluruh pekerjaan rumah kepada anggota keluarga yang paling tua."
+                    "Melupakan janji-janji almarhum",
+                    "Mendoakan ampunan dan menyambung silaturahmi dengan kerabat orang tua",
+                    "Menutup komunikasi dengan keluarga besar",
+                    "Menyimpan kenangan tanpa mendoakan"
                 ],
-                answer: 1,
-                optionKeys: ["A", "B", "C", "D"],
-                explanation: "Pembahasan: Nilai Huyula menekankan kebersamaan dan kesadaran membantu sesama. Dalam keluarga, hal ini diwujudkan dengan inisiatif anak meredakan beban orang tua secara sukarela."
+                correct: 1,
+                explanation: "Setelah orang tua meninggal dunia, kewajiban berbakti diteruskan melalui doa ampunan, menunaikan wasiat, bersedekah atas nama mereka, dan menjaga silaturahmi dengan sahabat mereka."
             },
             {
-                q: "Orang tua Fikri telah meninggal dunia beberapa tahun yang lalu. Sebagai anak soleh yang memahami materi Akidah Akhlak, cara terbaik Fikri berbakti kepada almarhum orang tuanya adalah...",
+                category: "Kearifan Lokal Gorontalo",
+                question: "Tradisi gotong royong dalam masyarakat Gorontalo yang dapat diimplementasikan dalam membantu orang tua di rumah disebut...",
                 options: [
-                    "A. Cukup mengenang kebaikan mereka tanpa perlu melakukan amalan khusus.",
-                    "B. Mendoakan ampunan, menjaga silaturahmi dengan sahabat orang tua, dan bersedekah atas nama mereka.",
-                    "C. Menyimpan barang-barang peninggalan orang tua di museum madrasah.",
-                    "D. Menyalahkan keadaan karena harus tumbuh dewasa tanpa bimbingan orang tua."
+                    "Huyula",
+                    "Paluwala",
+                    "Molalungula",
+                    "Tumbilotohe"
                 ],
-                answer: 1,
-                optionKeys: ["A", "B", "C", "D"],
-                explanation: "Pembahasan: Berbakti kepada orang tua yang telah wafat dilakukan dengan mendoakan ampunan, menunaikan janji/wasiat yang sesuai syariat, bersedekah, serta menyambung silaturahmi dengan kerabat/sahabat almarhum."
+                correct: 0,
+                explanation: "Huyula adalah falsafah gotong royong dan tolong-menolong khas Gorontalo yang sejatinya dapat diawali dari lingkungan keluarga dengan membantu orang tua."
             },
             {
-                q: "Rasulullah SAW bersabda bahwa keridhaan Allah SWT terletak pada keridhaan orang tua. Dampak nyata yang dirasakan oleh seorang murid yang senantiasa mendapat ridho dari orang tuanya adalah...",
+                category: "Hikmah & Kebajikan",
+                question: "Salah satu keutamaan atau hikmah utama dari sikap Birrul Walidain dalam kehidupan seorang murid adalah...",
                 options: [
-                    "A. Selalu menjadi pemenang dalam setiap perlombaan tanpa perlu belajar.",
-                    "B. Hidupnya senantiasa diliputi keberkahan, kemudahan dalam menuntut ilmu, dan ketenangan jiwa.",
-                    "C. Terbebas dari semua ujian hidup dan tidak pernah mengalami kegagalan.",
-                    "D. Diberikan kekayaan finansial secara instan oleh Allah SWT."
+                    "Menjadi sombong di hadapan kawan",
+                    "Dilapangkan rezeki dan dimudahkan Allah dalam menuntut ilmu",
+                    "Terbebas dari tugas madrasah",
+                    "Mendapatkan pujian dari semua orang"
                 ],
-                answer: 1,
-                optionKeys: ["A", "B", "C", "D"],
-                explanation: "Pembahasan: Keridhaan orang tua mendatangkan keberkahan hidup, kelapangan dada, kemudahan dalam menuntut ilmu, serta menjadi jalan utama meraih pertolongan Allah SWT."
+                correct: 1,
+                explanation: "Anak yang berbakti kepada orang tua dipanjangkan umurnya dalam keberkahan, dilapangkan rezekinya, dan dimudahkan oleh Allah SWT dalam meraih ilmu yang bermanfaat."
             }
         ];
 
-        let currentQ = 0;
-        let score = 0;
-        let userAnswers = Array(quizData.length).fill(null);
+        let currentQuizIdx = 0;
+        let quizScore = 0;
+        let selectedAnswers = [];
 
-        function startQuizWithStudentInfo() {
-            const nameInput = document.getElementById('input-student-name').value.trim();
-            const classInput = document.getElementById('input-student-class').value;
-            const gasUrlInput = document.getElementById('input-gas-url').value.trim();
-            const errorMsg = document.getElementById('form-error-msg');
+        function renderQuestion() {
+            const q = quizData[currentQuizIdx];
+            
+            document.getElementById('quiz-progress-text').innerText = `Soal ${currentQuizIdx + 1} / ${quizData.length}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((currentQuizIdx + 1) / quizData.length) * 100}%`;
 
-            if (!nameInput || !classInput) {
-                errorMsg.classList.remove('hidden');
-                return;
-            }
+            document.getElementById('quiz-category').innerText = `Topik: ${q.category}`;
+            document.getElementById('quiz-question-title').innerText = q.question;
 
-            errorMsg.classList.add('hidden');
-            studentData.name = nameInput;
-            studentData.class = classInput;
-            studentData.startTime = new Date();
+            const answersGrid = document.getElementById('quiz-answers-grid');
+            answersGrid.innerHTML = '';
 
-            if (gasUrlInput) {
-                DEFAULT_GAS_URL = gasUrlInput;
-            }
+            document.getElementById('quiz-explanation-box').classList.add('hidden');
+            document.getElementById('quiz-next-btn').disabled = true;
+            document.getElementById('quiz-next-btn').classList.add('opacity-50', 'cursor-not-allowed');
 
-            document.getElementById('quiz-student-form').classList.add('hidden');
-            document.getElementById('quiz-container').classList.remove('hidden');
-
-            loadQuestion();
-        }
-
-        function toggleGasConfig() {
-            const inputGas = document.getElementById('input-gas-url');
-            inputGas.focus();
-        }
-
-        function loadQuestion() {
-            const q = quizData[currentQ];
-            document.getElementById('quiz-q-num').textContent = `Soal #${currentQ + 1} dari ${quizData.length}`;
-            document.getElementById('quiz-q-text').textContent = q.q;
-            document.getElementById('quiz-progress').textContent = `Soal ${currentQ + 1} dari ${quizData.length}`;
-
-            const optionsContainer = document.getElementById('quiz-options');
-            optionsContainer.innerHTML = '';
-
-            const feedbackArea = document.getElementById('quiz-feedback');
-            feedbackArea.classList.add('hidden');
-            document.getElementById('btn-next-quiz').classList.add('hidden');
-
-            q.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = "w-full p-4 bg-navy-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-left text-xs md:text-sm text-slate-200 font-medium transition-all hover:border-gold-500 focus:outline-none";
-                btn.textContent = opt;
-                btn.onclick = () => selectAnswer(idx);
+            q.options.forEach((optText, optIdx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "p-4 bg-navy-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-left text-xs md:text-sm text-slate-200 transition-all flex items-center justify-between group";
+                optBtn.id = `quiz-opt-${optIdx}`;
+                optBtn.onclick = () => handleAnswerSelect(optIdx);
                 
-                if (userAnswers[currentQ] !== null) {
-                    btn.disabled = true;
-                    if (idx === q.answer) {
-                        btn.classList.add('bg-emerald-950/80', 'border-emerald-500', 'text-emerald-300');
-                    } else if (idx === userAnswers[currentQ]) {
-                        btn.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-300');
-                    }
-                }
-                optionsContainer.appendChild(btn);
+                optBtn.innerHTML = `
+                    <span>${String.fromCharCode(65 + optIdx)}. ${optText}</span>
+                    <span class="w-5 h-5 rounded-full border border-slate-500 group-hover:border-gold-400 flex items-center justify-center text-[10px]"></span>
+                `;
+                answersGrid.appendChild(optBtn);
             });
-
-            if (userAnswers[currentQ] !== null) {
-                showQuizFeedback(userAnswers[currentQ]);
-            }
         }
 
-        function selectAnswer(idx) {
-            if (userAnswers[currentQ] !== null) return;
-            
-            userAnswers[currentQ] = idx;
-            if (idx === quizData[currentQ].answer) {
-                score += 20;
+        function handleAnswerSelect(optIdx) {
+            const q = quizData[currentQuizIdx];
+            const isCorrect = optIdx === q.correct;
+
+            playBeep(isCorrect ? 659.25 : 293.66, 'sine', 0.2); // E5 or D4
+
+            // Disable all option buttons
+            for (let i = 0; i < q.options.length; i++) {
+                const btn = document.getElementById(`quiz-opt-${i}`);
+                btn.disabled = true;
+                if (i === q.correct) {
+                    btn.className = "p-4 bg-emerald-950/80 border-2 border-emerald-500 rounded-xl text-left text-xs md:text-sm text-emerald-300 font-semibold flex items-center justify-between";
+                } else if (i === optIdx) {
+                    btn.className = "p-4 bg-rose-950/80 border-2 border-rose-500 rounded-xl text-left text-xs md:text-sm text-rose-300 flex items-center justify-between";
+                }
             }
 
-            loadQuestion();
-        }
+            if (isCorrect) {
+                quizScore += 20;
+            }
 
-        function showQuizFeedback(chosenIdx) {
-            const q = quizData[currentQ];
-            const feedbackArea = document.getElementById('quiz-feedback');
-            const status = document.getElementById('quiz-feedback-status');
-            const explain = document.getElementById('quiz-feedback-explain');
-            const nextBtn = document.getElementById('btn-next-quiz');
+            selectedAnswers.push({ question: currentQuizIdx, selected: optIdx, correct: q.correct });
 
-            feedbackArea.classList.remove('hidden');
-
-            if (chosenIdx === q.answer) {
-                feedbackArea.className = "p-4 rounded-xl border border-emerald-500/50 bg-emerald-950/40 space-y-2 text-xs md:text-sm";
-                status.textContent = "✅ Jawaban Kamu Benar! (+20 Poin)";
-                status.className = "font-bold text-emerald-400";
+            // Show Explanation
+            const expBox = document.getElementById('quiz-explanation-box');
+            expBox.classList.remove('hidden');
+            if (isCorrect) {
+                expBox.className = "p-4 rounded-xl border text-xs leading-relaxed space-y-1 bg-emerald-950/60 border-emerald-500/40 text-emerald-300";
+                document.getElementById('quiz-explanation-title').innerText = "✓ Jawaban Benar!";
             } else {
-                feedbackArea.className = "p-4 rounded-xl border border-rose-500/50 bg-rose-950/40 space-y-2 text-xs md:text-sm";
-                status.textContent = "❌ Jawaban Belum Tepat";
-                status.className = "font-bold text-rose-400";
+                expBox.className = "p-4 rounded-xl border text-xs leading-relaxed space-y-1 bg-rose-950/60 border-rose-500/40 text-rose-300";
+                document.getElementById('quiz-explanation-title').innerText = "❌ Jawaban Belum Tepat!";
             }
+            document.getElementById('quiz-explanation-desc').innerText = q.explanation;
 
-            explain.textContent = q.explanation;
-            nextBtn.classList.remove('hidden');
-            
-            if (currentQ === quizData.length - 1) {
-                nextBtn.textContent = "Lihat Hasil Akhir Kuis 🏆";
-            } else {
-                nextBtn.textContent = "Lanjut ke Soal Berikutnya →";
-            }
+            // Enable Next Button
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         }
 
         function nextQuestion() {
-            if (currentQ < quizData.length - 1) {
-                currentQ++;
-                loadQuestion();
+            if (currentQuizIdx < quizData.length - 1) {
+                currentQuizIdx++;
+                renderQuestion();
             } else {
                 showQuizResults();
             }
         }
 
         function showQuizResults() {
-            studentData.endTime = new Date();
-            const diffSeconds = Math.round((studentData.endTime - studentData.startTime) / 1000);
-            const minutes = Math.floor(diffSeconds / 60);
-            const seconds = diffSeconds % 60;
-            studentData.duration = `${minutes} menit ${seconds} detik`;
+            document.getElementById('quiz-question-container').classList.add('hidden');
+            document.getElementById('quiz-result-container').classList.remove('hidden');
 
-            document.getElementById('quiz-container').classList.add('hidden');
-            const resultCard = document.getElementById('quiz-result-card');
-            resultCard.classList.remove('hidden');
-
-            document.getElementById('result-student-info').textContent = `Siswa: ${studentData.name} (${studentData.class}) • Waktu Pengerjaan: ${studentData.duration}`;
-            document.getElementById('final-score').textContent = score;
-
-            const badge = document.getElementById('final-badge');
-            const summary = document.getElementById('final-summary-text');
-
-            if (score >= 80) {
-                badge.textContent = "🌟 Predikat: Bintang Adab Hulonthalo (Sangat Baik)";
-                badge.className = "mt-2 text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 inline-block";
-                summary.textContent = "Subhanallah! Kamu telah memahami dengan sangat mendalam prinsip dan praktik adab kepada orang tua. Pertahankan dan amalkan kebaikan ini dalam kehidupan sehari-hari!";
-            } else if (score >= 60) {
-                badge.textContent = "👍 Predikat: Anak Soleh Berkembang (Cukup Baik)";
-                badge.className = "mt-2 text-xs font-bold text-gold-400 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/30 inline-block";
-                summary.textContent = "Alhamdulillah! Pemahamanmu sudah baik. Pelajari kembali modul materi dan coba tingkatkan latihan di laboratorium adab agar semakin sempurna.";
-            } else {
-                badge.textContent = "📚 Predikat: Perlu Peningkatan Eksplorasi";
-                badge.className = "mt-2 text-xs font-bold text-rose-400 bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/30 inline-block";
-                summary.textContent = "Jangan berkecil hati! Luangkan waktu untuk membaca kembali uraian materi Q.S. Al-Isra' ayat 23-24 dan coba ulangi kuis ini.";
-            }
-
-            // Construct detailed answers log for teacher analysis
-            let correctCount = 0;
-            let wrongCount = 0;
-            let detailAnswersList = [];
-
-            quizData.forEach((q, idx) => {
-                const userChoiceIdx = userAnswers[idx];
-                const isCorrect = (userChoiceIdx === q.answer);
-                if (isCorrect) correctCount++; else wrongCount++;
-
-                const userOptKey = userChoiceIdx !== null ? q.optionKeys[userChoiceIdx] : '-';
-                const correctOptKey = q.optionKeys[q.answer];
-                detailAnswersList.push(`S${idx+1}:${userOptKey}(${isCorrect ? 'Benar' : 'Salah, Kunci:'+correctOptKey})`);
-            });
-
-            // Send payload to Google Apps Script
-            sendDataToGoogleSheets({
-                nama: studentData.name,
-                kelas: studentData.class,
-                waktuPengerjaan: studentData.duration,
-                jumlahBenar: correctCount,
-                jumlahSalah: wrongCount,
-                nilai: score,
-                detailJawaban: detailAnswersList.join(' | ')
-            });
-        }
-
-        function sendDataToGoogleSheets(payload) {
-            const syncStatus = document.getElementById('quiz-sync-status');
+            document.getElementById('final-score-val').innerText = quizScore;
             
-            if (!DEFAULT_GAS_URL || DEFAULT_GAS_URL.includes("YOUR_DEPLOYMENT_ID")) {
-                syncStatus.className = "p-3 bg-amber-950/80 rounded-xl border border-amber-500/40 text-xs text-amber-300";
-                syncStatus.innerHTML = "⚠️ Mode Mandiri: Data kuis disimpan secara lokal di browser (URL Web App Google Apps Script belum dikonfigurasi).";
-                return;
+            const gradeEl = document.getElementById('final-score-grade');
+            const feedbackEl = document.getElementById('final-score-feedback');
+
+            if (quizScore >= 80) {
+                gradeEl.innerText = "Predikat: Sangat Baik (Mumtaz) 🎉";
+                gradeEl.className = "text-xs font-bold uppercase tracking-wider text-emerald-400";
+                feedbackEl.innerText = "Selamat! Kamu telah memahami materi Adab Terhadap Orang Tua dan siap mempraktikkannya dalam kehidupan sehari-hari.";
+            } else if (quizScore >= 60) {
+                gradeEl.innerText = "Predikat: Baik (Jayyid) 👍";
+                gradeEl.className = "text-xs font-bold uppercase tracking-wider text-gold-400";
+                feedbackEl.innerText = "Pemahamanmu sudah cukup baik. Pelajari kembali beberapa modul materi untuk lebih menyempurnakan pemahamanmu.";
+            } else {
+                gradeEl.innerText = "Predikat: Perlu Peningkatan 📚";
+                gradeEl.className = "text-xs font-bold uppercase tracking-wider text-rose-400";
+                feedbackEl.innerText = "Jangan berkecil hati. Mari pelajari kembali Modul Materi dan coba simulator adab untuk memperdalam pemahamanmu.";
             }
-
-            syncStatus.className = "p-3 bg-navy-900 rounded-xl border border-slate-700 text-xs text-gold-400 flex items-center justify-center gap-2";
-            syncStatus.innerHTML = `<span class="animate-spin">⏳</span> <span>Mengirim data evaluasi ke Spreadsheet Guru...</span>`;
-
-            fetch(DEFAULT_GAS_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "text/plain" },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                syncStatus.className = "p-3 bg-emerald-950/80 rounded-xl border border-emerald-500/50 text-xs text-emerald-300 font-bold";
-                syncStatus.innerHTML = "✅ Hasil evaluasi berhasil tersimpan secara otomatis di Database Spreadsheet Guru!";
-            })
-            .catch(err => {
-                console.error("Gagal mengirim data ke GAS:", err);
-                syncStatus.className = "p-3 bg-rose-950/80 rounded-xl border border-rose-500/50 text-xs text-rose-300";
-                syncStatus.innerHTML = "⚠️ Terjadi masalah jaringan saat menyimpan ke cloud. Hasil kuis tetap tersimpan di perangkat ini.";
-            });
         }
 
-        function restartQuiz() {
-            currentQ = 0;
-            score = 0;
-            userAnswers = Array(quizData.length).fill(null);
-            document.getElementById('quiz-result-card').classList.add('hidden');
-            document.getElementById('quiz-student-form').classList.remove('hidden');
+        function resetQuiz() {
+            currentQuizIdx = 0;
+            quizScore = 0;
+            selectedAnswers = [];
+            document.getElementById('quiz-result-container').classList.add('hidden');
+            document.getElementById('quiz-question-container').classList.remove('hidden');
+            renderQuestion();
         }
 
-        /* ------------------------------------------------------------------ */
-        /* INITIALIZATION ON WINDOW LOAD                                      */
-        /* ------------------------------------------------------------------ */
-        window.onload = function() {
+        window.onload = function () {
+            renderScenario();
             renderSortGame();
-            const savedUrl = localStorage.getItem('mpi_gas_url');
-            if (savedUrl) {
-                DEFAULT_GAS_URL = savedUrl;
-                document.getElementById('input-gas-url').value = savedUrl;
-            }
+            renderQuestion();
         };
     </script>
 </body>
